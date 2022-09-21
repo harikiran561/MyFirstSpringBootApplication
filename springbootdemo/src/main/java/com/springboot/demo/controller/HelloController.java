@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/suresh")
 @Slf4j
 public class HelloController {
     static List<User> users = new ArrayList<>();
