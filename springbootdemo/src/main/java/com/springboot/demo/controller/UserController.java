@@ -4,10 +4,7 @@ import com.springboot.demo.exception.NoUsersFoundException;
 import com.springboot.demo.model.User;
 import com.springboot.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -34,8 +31,23 @@ public class UserController {
         User user = userService.getUserById(id);
         if (!Objects.isNull(user)) {
             return user;
-        }else {
+        } else {
             throw new NoUsersFoundException("The given user not found");
         }
+    }
+
+    @PostMapping("/users")
+    public void createUser(@RequestBody User user) {
+        userService.createUser(user);
+    }
+
+    /*@PostMapping("/users")
+    public void saveListOfUsers(@RequestBody List<User> users) {
+        userService.createUser(users);
+    }*/
+
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
     }
 }
